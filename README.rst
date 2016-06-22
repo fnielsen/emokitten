@@ -15,7 +15,7 @@ With a standard Ubuntu system:
 
     sudo python setup.py install
 
-This will install the package and a command-line program in ``/usr/local/bin/emokitten``.
+This will install the package and a command-line program available as ``/usr/local/bin/emokitten``.
 
 Usage
 -----
