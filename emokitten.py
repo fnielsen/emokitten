@@ -124,6 +124,23 @@ def iir_filter(x, order=3, cutoff=np.array([7.0, 12, 0]),
     Infinite impulse response filter as generator
     alpha filter with a short IIR filter
 
+    Parameters
+    ----------
+    x : iterator yielding an numpy.array
+        Input signal
+    order : int
+        Filter order
+    cutoff : numpy.array
+        Array with cutoff-frequencies
+    btype : 'band', 'lowpass', ...
+        String with filter type
+    nyq : float
+        Nyquist frequency
+
+    Yields
+    ------
+    y : numpy.array
+
     """
     it = iter(x)
     b, a = iir_filter_coefs(order=order, cutoff=cutoff, btype=btype, nyq=nyq)
@@ -160,7 +177,21 @@ def abser(x):
 
 
 def ratioer(x, y):
-    """Yield ratio of input iterators."""
+    """Yield ratio of input iterators.
+
+    Parameters
+    ----------
+    x : iterator
+        Input array for the numerator
+    y : iterator
+        Input array for the denominator
+
+    Yields
+    ------
+    y : numpy.array
+        Output array with division result
+
+    """
     it1 = iter(x)
     it2 = iter(y)
     while True:
@@ -168,7 +199,18 @@ def ratioer(x, y):
 
 
 def alpha_stars(electrode='O1', cutoff=0.5, order=3):
-    """Read EEG and print stars."""
+    """Read EEG and print stars.
+
+    Parameters
+    ----------
+    electrode : str
+        String with electrode name
+    cutoff : float
+        Cutoff-frequency for the lowpass filter
+    order : int
+        Filter order of the lowpass filter
+
+    """
     logging.info('Opening Emotiv device')
     try:
         headset = emotiv.Emotiv(display_output=False)
